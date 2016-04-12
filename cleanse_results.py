@@ -23,6 +23,8 @@ Postconditions:
 datafile='data/results.dat'
 death_file='data/all_deaths.dat'
 
+
+
 def get_existing_entries(dbfile):
    ''' Return a list data structure of existing entries contained in the dbfile '''
    already_dead = []
@@ -38,7 +40,7 @@ def _parse_line_content(line):
    '''
    s1 = line.split('>')
    s2 = s1[2].split('<')
-   return s2[0]
+   return s2[0].strip()
 
 def get_todays_entries(data_file_name):
    ''' Return a list data structure containing all of the entries for today's scrape '''
@@ -52,13 +54,11 @@ def write_data_file(data, filename, mode='a'):
    with open(filename, mode) as dout:
       dout.write(data + '\n')
 
-
 def main():
    existing_deaths = get_existing_entries(death_file)
    todays = get_todays_entries(datafile)
    for death in todays:
       if not death in existing_deaths:
-         print(death + " is not in existing_deaths")
          write_data_file(death, death_file)
           
 
