@@ -18,22 +18,17 @@ Postconditions:
 - the results.dat file is read and any new entries that are extracted from that raw data
   are added to all_deaths.dat
 - An email is sent via smtp on localhost indicating that there were new deaths
- 
-
-
 '''
 
 datafile='data/results.dat'
 death_file='data/all_deaths.dat'
-
-
 
 def get_existing_entries(dbfile):
    ''' Return a list data structure of existing entries contained in the dbfile '''
    already_dead = []
    with open(death_file, 'r') as dfile:
       for x in dfile.readlines():
-         already_dead.append(x)
+         already_dead.append(x.strip())
    return already_dead
 
 def _parse_line_content(line):
@@ -55,7 +50,7 @@ def get_todays_entries(data_file_name):
 
 def write_data_file(data, filename, mode='a'):
    with open(filename, mode) as dout:
-      dout.write(data)
+      dout.write(data + '\n')
 
 
 def main():
@@ -63,8 +58,9 @@ def main():
    todays = get_todays_entries(datafile)
    for death in todays:
       if not death in existing_deaths:
+         print(death + " is not in existing_deaths")
          write_data_file(death, death_file)
-         
+          
 
 if __name__ == '__main__':
    main()
