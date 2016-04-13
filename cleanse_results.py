@@ -28,7 +28,7 @@ death_file='data/all_deaths.dat'
 def get_existing_entries(dbfile):
    ''' Return a list data structure of existing entries contained in the dbfile '''
    already_dead = []
-   with open(death_file, 'r') as dfile:
+   with open(dbfile, 'r') as dfile:
       for x in dfile.readlines():
          already_dead.append(x.strip())
    return already_dead
@@ -60,7 +60,7 @@ def main():
    for death in todays:
       if not death in existing_deaths:
          write_data_file(death, death_file)
-          
+         print(death + " was added")       
 
 if __name__ == '__main__':
    main()
