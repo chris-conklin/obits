@@ -60,7 +60,9 @@ def main():
    for death in todays:
       if not death in existing_deaths:
          write_data_file(death, death_file)
-         print(death + " was added")       
+         print("+++ " + death + " was added")
+      else:
+         print("=== " + death + " exists")        
 
 if __name__ == '__main__':
    main()
