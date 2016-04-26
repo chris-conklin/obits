@@ -1,4 +1,5 @@
 import sys
+import os
 
 '''
 
@@ -20,10 +21,10 @@ Postconditions:
 - An email is sent via smtp on localhost indicating that there were new deaths
 '''
 
-datafile='data/results.dat'
-death_file='data/all_deaths.dat'
+app_home = os.path.dirname(os.path.abspath(__file__))
 
-
+datafile = os.path.join(app_home, 'data', 'results.dat')
+death_file = os.path.join(app_home, 'data', 'all_deaths.dat')
 
 def get_existing_entries(dbfile):
    ''' Return a list data structure of existing entries contained in the dbfile '''
