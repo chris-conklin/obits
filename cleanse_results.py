@@ -36,8 +36,8 @@ def get_existing_entries(dbfile):
 
 def _parse_line_content(line):
    ''' A line currently formatted as follows:
-       <h3 class="title"><a href="Mannix-James.shtml">Retired USAF Colonel James P. Mannix Sr., 1944-2016; Was Business Affairs Director</a></h3>
-       is passed in and only the Retired USAF Colonel James P. Mannix Sr., 1944-2016; Was Business Affairs Director would be returned
+       <h3 class="title"><a href="name-name.shtml">James P. Shmoe Sr., 1944-2016; Was Business Affairs Director</a></h3>
+       is passed in and only the sdf., 1944-2016; Was Business Affairs Director would be returned
    '''
    s1 = line.split('>')
    s2 = s1[2].split('<')
@@ -63,7 +63,7 @@ def main():
          write_data_file(death, death_file)
          print("+++ " + death + " was added")
       else:
-         print("=== " + death + " exists")        
+         print("=== " + death )        
 
 if __name__ == '__main__':
    main()
